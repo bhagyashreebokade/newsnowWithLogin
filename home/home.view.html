@@ -1,0 +1,110 @@
+﻿<div ng-controller="Newsnow as news" ng-cloak>
+        <!-- <md-toolbar md-scroll-shrink>
+            <div class="md-toolbar-tools">
+                <h3>
+                    <span>hello world</span>
+                </h3>
+            </div>
+            <div class="md-toolbar-tools">
+                    <h3>
+                        <span>hello world 2</span>
+                    </h3>
+                </div>
+        </md-toolbar> -->
+        <md-toolbar>
+            <!-- <div layout="row"> -->
+            <div class="md-toolbar-tools">
+                <div flex="20">
+                    <h1>NewsNow!</h1>
+                </div>
+                <div flex="60">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Search</label>
+                        <input name="input" ng-model="search" ng-change="displayCategory()" ng-trim="true" />
+                    </md-input-container>
+                    <!-- <input layout-align="center" type="text" name="input" ng-model="search" ng-trim="true"
+                    ng-change="displayCategory()"> -->
+                </div>
+
+                <!-- <div flex="" class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center"> -->
+                <div flex="20">
+                    <md-input-container>
+                        <!-- <label>Country</label> -->
+                        <md-select ng-model="selectedCountry">
+                            <md-option ng-repeat="country in countries" value="{{country.id}}">
+                                {{ country.name }}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <!-- <select ng-model="selectedCountry">
+                    <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
+                </select> -->
+                <a href="#!/account">Account</a>
+                    <!-- <md-button class="md-primary md-raised" ng-click="showDialog($event)">Login</md-button> -->
+                </div>
+            </div>
+        </md-toolbar>
+        <div layout="row">
+            <md-content flex="20">
+                <md-list flex>
+                    <md-subheader class="md-no-sticky">{{ !search ? 'CATEGORIES' : 'Search Results For' }}
+                    </md-subheader>
+                    <md-list-item ng-if="!search" class="md-3-line" ng-repeat="category in categories"
+                        ng-click="displayCategory(category)">
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ category }}</h3>
+                        </div>
+                    </md-list-item>
+                    <md-list-item ng-if="search" class="md-3-line" ng-click="displayCategory(category)">
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ search }}</h3>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+            <!-- <div flex="20">
+                <button ng-if="!search" ng-repeat="category in categories" class="tablinks"
+                    ng-click="displayCategory(category)">{{category}}</button>
+                <button ng-if="search" class="tablinks">Search Results for {{search}}</button>
+            </div> -->
+
+            <div flex="60">
+                <h2 class="md-title">Total Stories {{results.totalResults}}</h2>
+                <br />
+                <div class="content">
+                    <md-card ng-repeat="article in results.articles">
+                        <!-- <a ng-href="{{article.url}}"> -->
+                        <md-card-title>
+                            <md-card-title-text>
+                                <h2 class="md-headline">{{article.title}}</h2>
+                                <p class="md-subhead">{{article.publishedAt | date : medium}}</p>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                                <img ng-src="{{article.urlToImage ? article.urlToImage : ''}}" class="md-media-lg"
+                                    alt="image caption">
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button mat-mini-fab ng-href="{{article.url}}">Read Article</md-button>
+                        </md-card-actions>
+                        <!-- </a> -->
+                    </md-card>
+                    <!-- <div class="content" ng-repeat="article in results.articles">
+                        <a ng-href="{{article.url}}">
+                            <span>{{article.title}}</span><br />
+                            <span>{{article.publishedAt | date : medium}}</span><br />
+                            <img ng-src="{{article.urlToImage ? article.urlToImage : ''}}">
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+
+            <div flex="20">
+                <h2 class="md-title">Weather</h2>
+                <div>Current City : Kalyan</div>
+                <div>Weather Condition : Haze</div>
+                <div>Max Temprature : 40 C</div>
+                <div>Min Temprature : 35 C</div>
+            </div>
+        </div>
+    </div>
